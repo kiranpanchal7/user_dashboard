@@ -1,0 +1,51 @@
+/* You can add global styles to this file, and also import other style files */
+@use 'bootstrap/scss/bootstrap';
+@use '@fortawesome/fontawesome-free/css/all.min.css';
+
+
+:root{
+    --themeColor:#5f9ea0;
+    --lightthemeColor:#b8d7d7;
+    --tintColor:#0000006b
+}
+
+body{
+    height:100dvh;
+}
+.c-pointer{cursor: pointer;}
+.themeColorText{color:var(--themeColor)}
+.flex-1{flex:1};
+.themeButton,themeButton:hover{
+    background-color: var(--themeColor) !important;
+    padding: 10px;
+    border:1px solid var(--themeColor) !important;
+
+    color:white !important;
+}
+.themeButton:hover{
+    transform: translateY(-2px);
+    box-shadow: 2px 2px 10px gray;
+}
+table{thead{th{background-color: var(--lightthemeColor) !important;}}}
+
+.customCenterModal{
+    position:fixed;
+    inset:0;
+    background-color: var(--tintColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .modalContainer{
+        width: 40%;
+        padding:10px;
+        background-color: white;
+        border-radius:10px
+    }
+}
+.width-50vw{width:50vw}
+
+@media (min-width:320px) and (max-width:786px){
+    .customCenterModal{
+        .modalContainer{width: 90%;}
+    }
+}

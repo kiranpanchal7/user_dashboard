@@ -1,0 +1,47 @@
+<div class="h-100">
+    <header>
+        <h3 class="p-3 mb-0 headingDiv fw-bold">User Dashboard</h3>
+    </header>
+    <section class="p-3">
+        <div class="text-end">
+            <button class="btn themeButton" (click)="addUserFunc()"><i class="fa fa-plus me-2"></i>Add User</button>
+        </div>
+        <div class="my-3">
+            <div class="card shadow p-3 border-0 flex-1 mb-3">
+                <div class="justify-content-end d-flex mb-3"><input type="text" [(ngModel)]="searchValue" (ngModelChange)="searchUserFunc()" class="form-control width-50vw" placeholder="Search by Name..."></div>
+                <div class="tableDiv table-responsive">
+                    <table class="table table-striped border">
+                        <thead>
+                            <tr>
+                                <th>SNo.</th>
+                                <th>Name</th>
+                                <th>Email Address</th>
+                                <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for ( user of userlistArray ;track user.name;let i=$index){
+                                <tr>
+                                    <td>{{i+1}}</td>
+                                    <td>{{user.name}}</td>
+                                    <td>{{user.email}}</td>
+                                    <td>{{user.role}}</td>
+                                </tr>
+                            }
+                            @empty{
+                                <tr>
+                                    <td colspan="10" class="text-center">No Data Found</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="chartDiv flex-1">
+                <app-chart></app-chart>
+            </div>
+        </div>
+    </section>
+    <ng-container #modalContainer></ng-container>
+</div>
+
