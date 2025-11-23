@@ -3,7 +3,7 @@ name: Build & Release Tarball
 on:
   push:
     tags:
-      - 'v*'        # trigger on pushed tags like v1.0.0
+      - 'v*'
 
   release:
     types: [published]
@@ -28,7 +28,7 @@ jobs:
 
       - name: Create tarball artifact
         run: |
-          tar -czf dist.tar.gz dist/
+          tar -czf dist.tar.gz -C dist/userdashboard .
           ls -lh dist.tar.gz
 
       - name: Create GitHub Release
