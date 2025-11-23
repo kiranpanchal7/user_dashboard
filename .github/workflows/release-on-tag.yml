@@ -28,8 +28,8 @@ jobs:
 
       - name: Create tarball artifact
         run: |
-          tar -czf user_dashboard.tar.gz -C dist/userdashboard
-          ls -lh dist.tar.gz
+          tar -czf user_dashboard.tar.gz -C dist/userdashboard .
+          ls -lh user_dashboard.tar.gz
 
       - name: Create GitHub Release
         id: create_release
@@ -42,6 +42,6 @@ jobs:
       - name: Upload tarball to Release
         uses: softprops/action-gh-release@v1
         with:
-          files: dist.tar.gz
+          files: user_dashboard.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
