@@ -28,7 +28,7 @@ jobs:
 
       - name: Create tarball artifact
         run: |
-          tar -czf dist.tar.gz -C dist/userdashboard .
+          tar -czf user_dashboard.tar.gz -C dist/userdashboard
           ls -lh dist.tar.gz
 
       - name: Create GitHub Release
