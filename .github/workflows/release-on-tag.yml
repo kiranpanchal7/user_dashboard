@@ -1,0 +1,45 @@
+name: Build & Release Tarball
+
+on:
+  push:
+    tags:
+      - 'v*'        # trigger on pushed tags like v1.0.0
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (production)
+        run: npm run build
+
+      - name: Create tarball artifact
+        run: |
+          # If build is in dist/<projectName>, change the -C path
+          npm run package:tar
+          ls -lh dist.tar.gz
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload tarball to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
